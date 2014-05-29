@@ -1,0 +1,32 @@
+{
+  "name": "machinepack-github",
+  "version": "0.0.0",
+  "description": "Machines for talking to the Github API.",
+  "scripts": {
+    "test": "mocha -b"
+  },
+  "keywords": [
+    "machine",
+    "machines",
+    "github",
+    "github-api",
+    "email"
+  ],
+  "author": "Mike McNeil",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.19.0"
+  },
+  "dependencies": {
+    "github": "~0.1.16"
+  },
+  "machine-package": {
+    "focus": "github",
+    "machine-api": "~0.0.0",
+    "machines": [
+      "get-repo",
+      "get-repo-activity",
+      "get-repo-commits"
+    ]
+  }
+}
