@@ -164,27 +164,30 @@ module.exports = {
 
   fn: function(inputs, exits) {
 
-    var _3HOURS = 1000 * 60 * 60 * 3;
-    var _3hoursago = new Date((new Date()) - _3HOURS);
-    var Github = require('github');
+    try {
 
-    var github = new Github({
-      version: '3.0.0',
-      // optional
-      // debug: true,
-      // protocol: 'https',
-      // host: 'github.my-GHE-enabled-company.com',
-      // pathPrefix: '/api/v3', // for some GHEs
-      // timeout: 5000
-    });
+      var Github = require('github');
+      var github = new Github({
+        version: '3.0.0',
+        // optional
+        // debug: true,
+        // protocol: 'https',
+        // host: 'github.my-GHE-enabled-company.com',
+        // pathPrefix: '/api/v3', // for some GHEs
+        // timeout: 5000
+      });
 
-    github.repos.getCommits({
-      repo: inputs.repo,
-      user: inputs.user
-    }, function(err, data) {
-      if (err) return exits(err);
-      else return exits.success(data);
-    });
+      github.repos.getCommits({
+        repo: inputs.repo,
+        user: inputs.user
+      }, function(err, data) {
+        if (err) return exits(err);
+        else return exits.success(data);
+      });
+    }
+    catch (e) {
+      return exits.error(e);
+    }
   }
 
 };
