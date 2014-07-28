@@ -1,11 +1,15 @@
+/**
+ * Module dependencies
+ */
+
+var github = require('github');
+
+
 module.exports = {
 
   id: 'get-repo-activity',
   moduleName: 'machinepack-github',
   description: 'Fetch activity in a github repo.',
-  dependencies: {
-    github: '*'
-  },
 
   // Whether this machine is referentially transparent
   // (i.e. read-only and free of side effects)
@@ -97,11 +101,11 @@ module.exports = {
     }
   },
 
-  fn: function(inputs, exits, deps) {
+  fn: function(inputs, exits) {
 
     var _3HOURS = 1000 * 60 * 60 * 3;
     var _3hoursago = new Date((new Date()) - _3HOURS);
-    var Github = deps.github;
+    var Github = require('github');
 
     var github = new Github({
       version: '3.0.0',
