@@ -2,21 +2,23 @@ module.exports = {
 
   id: 'get-repo-commits',
   moduleName: 'machinepack-github',
-  description: 'Fetch commits in a github repo.',
+  description: 'Fetch recent commits from a github repo.',
   dependencies: {
     github: '*'
   },
 
   // Whether this machine is referentially transparent
   // (i.e. read-only and free of side effects)
-  transparent: true,
+  noSideEffects: true,
 
   inputs: {
     repo: {
-      type: 'string'
+      type: 'string',
+      example: 'sails'
     },
     user: {
-      type: 'string'
+      type: 'string',
+      example: 'balderdashy'
     }
   },
 

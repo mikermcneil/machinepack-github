@@ -9,7 +9,7 @@ module.exports = {
 
   // Whether this machine is referentially transparent
   // (i.e. read-only and free of side effects)
-  transparent: true,
+  noSideEffects: true,
 
   inputs: {
     repo: {
