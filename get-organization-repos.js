@@ -15,7 +15,12 @@ module.exports = {
 
   inputs: {
     user: {
-      type: 'string'
+      type: 'string',
+      example: 'balderdashy'
+    },
+    limit: {
+      type: 'integer',
+      example: 30
     }
   },
 
@@ -89,7 +94,8 @@ module.exports = {
     });
     github.repos.getFromOrg({
       org: $i.user||'balderdashy',
-      limit: $i.limit||30
+      per_page: $i.limit||30,
+      page: ($i.skip||0)/($i.limit||30)
     }, $x);
   }
 
