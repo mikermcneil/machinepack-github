@@ -84,20 +84,13 @@ module.exports = {
   },
 
   fn: function($i, $x) {
-
-    var github;
-
-    try {
-      github = new Github({
-        version: '3.0.0'
-      });
-      github.repos.getFromOrg({
-        org: $i.user
-      }, $x);
-    }
-    catch (e) {
-      return $x(e);
-    }
+    var github = new Github({
+      version: '3.0.0'
+    });
+    github.repos.getFromOrg({
+      org: $i.user||'balderdashy',
+      limit: $i.limit||30
+    }, $x);
   }
 
 };
