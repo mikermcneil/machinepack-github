@@ -20,7 +20,7 @@
   "dependencies": {
     "github": "~0.1.16"
   },
-  "machine-package": {
+  "machinepack": {
     "focus": "github",
     "machine-api": "~0.0.0",
     "machines": [
