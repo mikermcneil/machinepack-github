@@ -18,7 +18,8 @@
     "mocha": "~1.19.0"
   },
   "dependencies": {
-    "github": "~0.1.16"
+    "github": "~0.1.16",
+    "node-machine": "^0.3.0"
   },
   "machinepack": {
     "focus": "github",
