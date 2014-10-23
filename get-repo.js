@@ -14,10 +14,12 @@ module.exports = {
 
   inputs: {
     repo: {
-      type: 'string'
+      type: 'string',
+      example: 'sails'
     },
     user: {
-      type: 'string'
+      type: 'string',
+      example: 'balderdashy'
     }
   },
 
