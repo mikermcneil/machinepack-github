@@ -22,8 +22,7 @@
     "node-machine": "^0.3.0"
   },
   "machinepack": {
-    "focus": "github",
-    "machine-api": "~0.0.0",
+    "machinepackDir": "machines",
     "machines": [
       "get-repo",
       "get-repo-activity",

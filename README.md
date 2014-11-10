@@ -4,11 +4,10 @@
 ###Basic usage
 
 ```js
-require('node-machine')
-.build(require('machinepack-github/get-repo'))
-.configure({
-  user: 'balderdashy',
-  repo: 'sails'
+var github = require('machinepack-github');
+github.getRepo({
+	repo: 'sails',
+	user: 'balderdashy'
 })
 .exec({
   success: console.log,

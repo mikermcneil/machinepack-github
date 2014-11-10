@@ -1,29 +1,23 @@
-/**
- * Module dependencies
- */
-
-var github = require('github');
-
 module.exports = {
 
-  id: 'get-repo-commits',
-  moduleName: 'machinepack-github',
+  identity: 'get-repo-commits',
+  friendlyName: 'Get repo commits',
   description: 'Fetch recent commits from a github repo.',
-
-  // Whether this machine is referentially transparent
-  // (i.e. read-only and free of side effects)
-  noSideEffects: true,
+  cacheable: true,
 
   inputs: {
     repo: {
-      type: 'string',
-      example: 'sails'
+      example: 'sails',
+      required: true
     },
     user: {
-      type: 'string',
-      example: 'balderdashy'
+      example: 'balderdashy',
+      required: true
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
 
   exits: {
     error: {
@@ -164,17 +158,11 @@ module.exports = {
 
   fn: function(inputs, exits) {
 
-    try {
+    var Github = require('github');
 
-      var Github = require('github');
+    try {
       var github = new Github({
-        version: '3.0.0',
-        // optional
-        // debug: true,
-        // protocol: 'https',
-        // host: 'github.my-GHE-enabled-company.com',
-        // pathPrefix: '/api/v3', // for some GHEs
-        // timeout: 5000
+        version: '3.0.0'
       });
 
       github.repos.getCommits({

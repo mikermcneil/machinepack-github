@@ -1,28 +1,25 @@
-/**
- * Module dependencies
- */
-
-var Github = require('github');
-
 module.exports = {
 
-  // https://developer.github.com/v3/repos/#list-organization-repositories
-  id: 'get-organization-repos',
-  moduleName: 'machinepack-github',
+  identity: 'get-organization-repos',
+  friendlyName: 'Get organization repos',
   description: 'Fetch the list of repos in a Github organization.',
-
-  noSideEffects: true,
+  cacheable: true,
 
   inputs: {
     user: {
-      type: 'string',
-      example: 'balderdashy'
+      example: 'balderdashy',
+      required: true
     },
     limit: {
-      type: 'integer',
+      example: 30
+    },
+    skip: {
       example: 30
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
 
   exits: {
     error: {
@@ -88,15 +85,30 @@ module.exports = {
     }
   },
 
-  fn: function($i, $x) {
-    var github = new Github({
-      version: '3.0.0'
-    });
-    github.repos.getFromOrg({
-      org: $i.user||'balderdashy',
-      per_page: $i.limit||30,
-      page: ($i.skip||0)/($i.limit||30)
-    }, $x);
+  fn: function(inputs, exits) {
+
+    var Github = require('github');
+
+    var limit = inputs.limit || 30;
+    var skip = inputs.skip || 0;
+
+    try {
+      var github = new Github({
+        version: '3.0.0'
+      });
+
+      github.repos.getFromOrg({
+        org: inputs.user,
+        per_page: limit,
+        page: skip / limit
+      }, function(err, data) {
+        if (err) return exits(err);
+        else return exits.success(data);
+      });
+    }
+    catch (e) {
+      return exits.error(e);
+    }
   }
 
 };

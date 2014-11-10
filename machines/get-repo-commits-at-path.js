@@ -1,33 +1,27 @@
-/**
- * Module dependencies
- */
-
-var github = require('github');
-
 module.exports = {
 
-  id: 'get-repo-commits-at-path',
-  moduleName: 'machinepack-github',
+  identity: 'get-repo-commits-at-path',
+  friendlyName: 'Get repo commits at path',
   description: 'Fetch recent commits from a github repo at the specifed path.',
-
-  // Whether this machine is referentially transparent
-  // (i.e. read-only and free of side effects)
-  noSideEffects: true,
+  cacheable: true,
 
   inputs: {
     repo: {
-      type: 'string',
-      example: 'sails'
+      example: 'sails',
+      required: true
     },
     user: {
-      type: 'string',
-      example: 'balderdashy'
+      example: 'balderdashy',
+      required: true
     },
     path: {
-      type: 'string',
-      example: 'README.md'
+      example: 'README.md',
+      required: true
     }
   },
+
+  defaultExit: 'success',
+  catchallExit: 'error',
 
   exits: {
     badRequest: {
@@ -184,8 +178,13 @@ module.exports = {
   },
 
   fn: function(inputs, exits) {
+
+    var Github = new require('github');
+
     try {
-      var github = new require('github')({ version: '3.0.0' });
+      var github = new Github({
+        version: '3.0.0',
+      });
 
       github.repos.getCommits({
         repo: inputs.repo,
