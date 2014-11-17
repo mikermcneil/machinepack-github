@@ -22,7 +22,7 @@
     "node-machine": "^0.3.0"
   },
   "machinepack": {
-    "machinepackDir": "machines",
+    "machineDir": "machines",
     "machines": [
       "get-repo",
       "get-repo-activity",
