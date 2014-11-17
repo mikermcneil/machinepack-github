@@ -7,13 +7,15 @@ module.exports = {
 
   inputs: {
     repo: {
+      description: 'Name of the Github repo to list activity for.',
       example: 'sails',
       required: true
     },
     user: {
+      description: 'Github user or organization that owns the repo.',
       example: 'balderdashy',
       required: true
-    },
+    }
   },
 
   defaultExit: 'success',

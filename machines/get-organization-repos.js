@@ -7,13 +7,16 @@ module.exports = {
 
   inputs: {
     user: {
+      description: 'Name of the organization or user to list repos for.',
       example: 'balderdashy',
       required: true
     },
     limit: {
+      description: 'Maximum number of records to retrieve.',
       example: 30
     },
     skip: {
+      description: 'Index of the first record to retrieve',
       example: 30
     }
   },
