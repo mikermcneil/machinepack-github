@@ -6,11 +6,10 @@
     "test": "mocha -b"
   },
   "keywords": [
-    "machine",
+    "machinepack",
     "machines",
     "github",
-    "github-api",
-    "email"
+    "github-api"
   ],
   "author": "Mike McNeil",
   "license": "MIT",
