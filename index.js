@@ -1,6 +1,4 @@
-// Export Machine.pack() object for convenience
-var path = require('path');
-
 module.exports = require('node-machine').pack({
-  pkg: require('./package.json')
+  pkg: require('./package.json'),
+  dir: __dirname
 });
