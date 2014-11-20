@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "github": "~0.1.16",
-    "node-machine": "^0.3.0"
+    "node-machine": "^1.0.0"
   },
   "machinepack": {
     "machineDir": "machines",

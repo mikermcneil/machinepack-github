@@ -1,18 +1,17 @@
 module.exports = {
 
-  identity: 'get-repo-activity',
   friendlyName: 'Get repo activity',
   description: 'Fetch activity in a github repo.',
   cacheable: true,
 
   inputs: {
     repo: {
-      description: 'Name of the Github repo to list activity for.',
+      description: 'The name of the Github repo (i.e. as it appears in the URL on GitHub)',
       example: 'sails',
       required: true
     },
     user: {
-      description: 'Github user or organization that owns the repo.',
+      description: 'The name of the organization or user that owns the repo (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
       required: true
     }

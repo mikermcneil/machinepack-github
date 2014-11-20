@@ -1,18 +1,17 @@
 module.exports = {
 
-  identity: 'get-repo',
   friendlyName: 'Get repo',
-  description: 'Fetch metadata about a github repo.',
+  description: 'Fetch metadata about a repository on GitHub.',
   cacheable: true,
 
   inputs: {
     repo: {
-      description: 'Name of the Github repo to fetch metadata for.',
+      description: 'The name of the Github repo (i.e. as it appears in the URL on GitHub)',
       example: 'sails',
       required: true
     },
     user: {
-      description: 'Github user or organization that owns the repo.',
+      description: 'The name of the organization or user that owns the repo (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
       required: true
     }

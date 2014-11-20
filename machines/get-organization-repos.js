@@ -1,23 +1,22 @@
 module.exports = {
 
-  identity: 'get-organization-repos',
   friendlyName: 'Get organization repos',
-  description: 'Fetch the list of repos in a Github organization.',
+  description: 'Fetch the list of repos in the specified Github organization.',
   cacheable: true,
 
   inputs: {
     user: {
-      description: 'Name of the organization or user to list repos for.',
+      description: 'The name of the organization or user (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
       required: true
     },
     limit: {
-      description: 'Maximum number of records to retrieve.',
+      description: 'Maximum number of repos to retrieve (for pagination)',
       example: 30
     },
     skip: {
-      description: 'Index of the first record to retrieve',
-      example: 30
+      description: 'Index of the first repo to retrieve, starting from 0 (for pagination)',
+      example: 0
     }
   },
 
