@@ -1,7 +1,7 @@
 {
   "name": "machinepack-github",
   "version": "1.0.1",
-  "description": "Machines for talking to the Github API.",
+  "description": "Communicate with the Github API to get repos, commits, etc.",
   "scripts": {
     "test": "mocha -b"
   },
