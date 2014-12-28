@@ -49,7 +49,7 @@ module.exports = {
       description: ''||undefined,
       homepage: ''||undefined,
       repo: inputs.repo
-    }, function _stripUndefinedValues(val){ return !_.isUndefined(val); }), function(err, data) {
+    }, function _stripKeysWithUndefinedValues(val){ return !_.isUndefined(val); }), function(err, data) {
       if (err) return exits.error(err);
       else return exits.success(data);
     });
