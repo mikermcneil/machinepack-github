@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "github": "~0.1.16",
-    "machine": "^1.0.0"
+    "machine": "^1.0.0",
+    "lodash": "^2.4.1"
   },
   "machinepack": {
     "machineDir": "machines",
@@ -27,7 +28,8 @@
       "get-repo-activity",
       "get-repo-commits",
       "get-repo-commits-at-path",
-      "get-organization-repos"
+      "get-organization-repos",
+      "create-repo"
     ]
   }
 }
