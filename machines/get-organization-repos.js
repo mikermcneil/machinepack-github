@@ -21,7 +21,6 @@ module.exports = {
   },
 
   defaultExit: 'success',
-  catchallExit: 'error',
 
   exits: {
     error: {
