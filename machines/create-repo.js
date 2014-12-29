@@ -6,13 +6,23 @@ module.exports = {
 
   inputs: {
     repo: {
-      description: 'The name for the new Github repo (i.e. as it appears in the URL on GitHub)',
+      description: 'The name for the new GitHub repo (i.e. as it appears in the URL on GitHub)',
       example: 'sails',
       required: true
     },
     user: {
       description: 'The name of the organization or user under which the new repo should be created (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
+      required: true
+    },
+    username: {
+      description: 'The GitHub username of the user or one of the organization\'s owner',
+      example: 'mikermcneil',
+      required: true
+    },
+    password: {
+      description: 'The GitHub password of the user or one of the organization\'s owner',
+      example: 'l0lcatzz',
       required: true
     }
   },
@@ -34,17 +44,23 @@ module.exports = {
     var _ = require('lodash');
     var Github = require('github');
 
-    // TODO: remove this stub
-    console.log('Ran machine');
-    return exits.success();
-
 
     var github = new Github({
       version: '3.0.0',
     });
 
-    // TODO: authorization
+    // Authenticate
+    github.authenticate({
+      type: "basic",
+      username: inputs.username,
+      password: inputs.password
+    });
 
+    // http://mikedeboer.github.io/node-github/#repos.prototype.createFromOrg
+    //  -or-
+    // http://mikedeboer.github.io/node-github/#repos.prototype.create
+
+    // Send request to create repo
     github.repos.create(_.pick({
       has_wiki: false,
       has_issues: true,

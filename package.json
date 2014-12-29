@@ -29,7 +29,8 @@
       "get-repo-commits",
       "get-repo-commits-at-path",
       "get-organization-repos",
-      "create-repo"
+      "create-repo",
+      "get-user-details"
     ]
   }
 }
