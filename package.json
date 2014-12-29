@@ -25,12 +25,12 @@
     "machineDir": "machines",
     "machines": [
       "get-repo",
-      "get-repo-activity",
-      "get-repo-commits",
-      "get-repo-commits-at-path",
-      "get-organization-repos",
       "create-repo",
-      "get-user-details"
+      "get-user-details",
+      "list-organization-repos",
+      "list-repo-commits-at-path",
+      "list-repo-commits",
+      "list-repo-activity"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",

@@ -1,6 +1,6 @@
 module.exports = {
 
-  friendlyName: 'Get repo activity',
+  friendlyName: 'List repo activity',
   description: 'Fetch activity in a github repo.',
   cacheable: true,
 

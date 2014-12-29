@@ -1,6 +1,6 @@
 module.exports = {
 
-  friendlyName: 'Get organization repos',
+  friendlyName: 'List organization repos',
   description: 'Fetch the list of repos in the specified Github organization.',
   cacheable: true,
 

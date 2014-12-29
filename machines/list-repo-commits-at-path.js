@@ -1,6 +1,6 @@
 module.exports = {
 
-  friendlyName: 'Get repo commits at path',
+  friendlyName: 'List repo commits at path',
   description: 'Fetch recent commits from a remote GitHub repository within the specifed path.',
   cacheable: true,
 

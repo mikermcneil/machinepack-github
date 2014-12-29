@@ -1,6 +1,6 @@
 module.exports = {
 
-  friendlyName: 'Get repo commits',
+  friendlyName: 'List repo commits',
   description: 'Fetch recent commits from the specified GitHub repository.',
   cacheable: true,
 
