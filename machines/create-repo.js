@@ -34,7 +34,9 @@ module.exports = {
     var _ = require('lodash');
     var Github = require('github');
 
-
+    // TODO: remove this stub
+    console.log('Ran machine');
+    return exits.success();
 
 
     var github = new Github({
