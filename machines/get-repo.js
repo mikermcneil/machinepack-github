@@ -21,10 +21,7 @@ module.exports = {
 
   exits: {
     error: {
-      example: {
-        "message": "Not Found",
-        "documentation_url": "https://developer.github.com/v3"
-      }
+      description: 'Unexpected error occurred'
     },
     success: {
       example: {
