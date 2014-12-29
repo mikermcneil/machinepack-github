@@ -31,6 +31,10 @@
       "get-organization-repos",
       "create-repo",
       "get-user-details"
+    ],
+    "devLinks": [
+      "https://developer.github.com/v3/",
+      "http://mikedeboer.github.io/node-github"
     ]
   }
 }
