@@ -15,15 +15,27 @@ module.exports = {
       required: true
     },
     username: {
-      description: 'A GitHub username (for authentication)',
+      description: 'The GitHub username (to authenticate with)',
       example: 'mikermcneil',
       required: true
     },
     password: {
-      description: 'A GitHub password (for authentication)',
+      description: 'The GitHub password (to authenticate with)',
       example: 'l0lcatzz',
       required: true,
       protect: true
+    },
+    homepage: {
+      description: 'A homepage URL to include on the new repo',
+      example: 'http://node-machine.org/machinepack-foo'
+    },
+    description: {
+      description: 'A short description to include on the new repo',
+      example: 'A utility for working with direwolves.'
+    },
+    private: {
+      description: 'Whether or not the new repo should be private (defaults to false, i.e. open-source)',
+      example: false
     }
   },
 
@@ -32,6 +44,9 @@ module.exports = {
   exits: {
     error: {
       description: 'Unexpected error occurred.'
+    },
+    userMismatch: {
+      description: 'Failed; can only create repo for an organization or the user whose credentials were used for authentication (i.e. provided as `username`)'
     },
     success: {
       description: 'Done.'
@@ -62,27 +77,64 @@ module.exports = {
       user: inputs.user
     }).exec({
       error: exits.error,
-      success: function (userDetails){
+      success: function (user){
 
-        return exits.success();
+        // Now send the appropriate request to create a new repo:
 
         // http://mikedeboer.github.io/node-github/#repos.prototype.createFromOrg
-        //  -or-
-        // http://mikedeboer.github.io/node-github/#repos.prototype.create
+        if (user.isOrganization) {
+          return (function _ifOrganization(){
+            github.repos.createFromOrg(_stripUndefinedKeys({
+              has_wiki: false,
+              has_issues: true,
+              description: inputs.description||undefined,
+              homepage: inputs.homepage||undefined,
+              org: inputs.user,
+              name: inputs.repo,
+              private: inputs.private||undefined
+            }), function(err, data) {
+              if (err) return exits.error(err);
+              return exits.success(data);
+            });
+          })();
+        }
 
-        // Send request to create repo
-        github.repos.create(_.pick({
+        // Since the provided `user` is not an organization, we must check that
+        // it matches the username provided for authentication.  Otherwise this
+        // won't work.
+        if (inputs.user !== inputs.username) {
+          return exits.userMismatch();
+        }
+
+        // or http://mikedeboer.github.io/node-github/#repos.prototype.create
+        github.repos.create(_stripUndefinedKeys({
           has_wiki: false,
           has_issues: true,
-          description: ''||undefined,
-          homepage: ''||undefined,
-          repo: inputs.repo
-        }, function _stripKeysWithUndefinedValues(val){ return !_.isUndefined(val); }), function(err, data) {
+          description: inputs.description||undefined,
+          homepage: inputs.homepage||undefined,
+          name: inputs.repo,
+          private: inputs.private||undefined
+        }), function(err, data) {
           if (err) return exits.error(err);
-          else return exits.success(data);
+          return exits.success(data);
         });
+
       }
     });
+
+
+    /**
+     * (just a helper function)
+     *
+     * @param {Object} obj
+     * @return {Object}
+     * @api private
+     */
+    function _stripUndefinedKeys(obj) {
+      return _.pick(obj, function _stripKeysWithUndefinedValues(val) {
+        return !_.isUndefined(val);
+      });
+    }
 
   }
 
