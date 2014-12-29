@@ -10,7 +10,7 @@ module.exports = {
       example: 'sails',
       required: true
     },
-    user: {
+    owner: {
       description: 'The name of the organization or user that owns the repo (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
       required: true
@@ -104,7 +104,7 @@ module.exports = {
 
       github.events.getFromRepo({
         repo: inputs.repo,
-        user: inputs.user
+        user: inputs.owner
       }, function(err, data) {
         if (err) return exits(err);
         else return exits.success(data);

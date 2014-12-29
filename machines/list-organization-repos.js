@@ -5,8 +5,8 @@ module.exports = {
   cacheable: true,
 
   inputs: {
-    user: {
-      description: 'The name of the organization or user (i.e. as it appears in the URL on GitHub)',
+    owner: {
+      description: 'The name of the organization (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
       required: true
     },
@@ -96,7 +96,7 @@ module.exports = {
       });
 
       github.repos.getFromOrg({
-        org: inputs.user,
+        org: inputs.owner,
         per_page: limit,
         page: skip / limit
       }, function(err, data) {

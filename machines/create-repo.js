@@ -9,7 +9,7 @@ module.exports = {
       example: 'sails',
       required: true
     },
-    user: {
+    owner: {
       description: 'The name of the organization or user under which the new repo should be created (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
       required: true
@@ -74,7 +74,7 @@ module.exports = {
     });
 
     Machine.build(require('./get-user-details'))({
-      user: inputs.user
+      user: inputs.owner
     }).exec({
       error: exits.error,
       success: function (user){
@@ -89,7 +89,7 @@ module.exports = {
               has_issues: true,
               description: inputs.description||undefined,
               homepage: inputs.homepage||undefined,
-              org: inputs.user,
+              org: inputs.owner,
               name: inputs.repo,
               private: inputs.private||undefined
             }), function(err, data) {
@@ -99,10 +99,10 @@ module.exports = {
           })();
         }
 
-        // Since the provided `user` is not an organization, we must check that
+        // Since the provided `owner` is not an organization, we must check that
         // it matches the username provided for authentication.  Otherwise this
         // won't work.
-        if (inputs.user !== inputs.username) {
+        if (inputs.owner !== inputs.username) {
           return exits.userMismatch();
         }
 
