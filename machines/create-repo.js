@@ -2,7 +2,6 @@ module.exports = {
 
   friendlyName: 'Create repo',
   description: 'Create a new GitHub repository in the specified organization.',
-  cacheable: true,
 
   inputs: {
     repo: {
@@ -16,14 +15,15 @@ module.exports = {
       required: true
     },
     username: {
-      description: 'The GitHub username of the user or one of the organization\'s owner',
+      description: 'A GitHub username (for authentication)',
       example: 'mikermcneil',
       required: true
     },
     password: {
-      description: 'The GitHub password of the user or one of the organization\'s owner',
+      description: 'A GitHub password (for authentication)',
       example: 'l0lcatzz',
-      required: true
+      required: true,
+      protect: true
     }
   },
 
@@ -43,6 +43,8 @@ module.exports = {
     // Dependencies
     var _ = require('lodash');
     var Github = require('github');
+    var Machine = require('machine');
+
 
 
     var github = new Github({
@@ -51,26 +53,37 @@ module.exports = {
 
     // Authenticate
     github.authenticate({
-      type: "basic",
+      type: 'basic',
       username: inputs.username,
       password: inputs.password
     });
 
-    // http://mikedeboer.github.io/node-github/#repos.prototype.createFromOrg
-    //  -or-
-    // http://mikedeboer.github.io/node-github/#repos.prototype.create
+    Machine.build(require('./get-user-details'))({
+      user: inputs.user
+    }).exec({
+      error: exits.error,
+      success: function (userDetails){
 
-    // Send request to create repo
-    github.repos.create(_.pick({
-      has_wiki: false,
-      has_issues: true,
-      description: ''||undefined,
-      homepage: ''||undefined,
-      repo: inputs.repo
-    }, function _stripKeysWithUndefinedValues(val){ return !_.isUndefined(val); }), function(err, data) {
-      if (err) return exits.error(err);
-      else return exits.success(data);
+        return exits.success();
+
+        // http://mikedeboer.github.io/node-github/#repos.prototype.createFromOrg
+        //  -or-
+        // http://mikedeboer.github.io/node-github/#repos.prototype.create
+
+        // Send request to create repo
+        github.repos.create(_.pick({
+          has_wiki: false,
+          has_issues: true,
+          description: ''||undefined,
+          homepage: ''||undefined,
+          repo: inputs.repo
+        }, function _stripKeysWithUndefinedValues(val){ return !_.isUndefined(val); }), function(err, data) {
+          if (err) return exits.error(err);
+          else return exits.success(data);
+        });
+      }
     });
+
   }
 
 };
