@@ -30,7 +30,8 @@
       "list-organization-repos",
       "list-repo-commits-at-path",
       "list-repo-commits",
-      "list-repo-activity"
+      "list-repo-activity",
+      "list-repos"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
