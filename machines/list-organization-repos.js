@@ -98,7 +98,7 @@ module.exports = {
       github.repos.getFromOrg({
         org: inputs.owner,
         per_page: limit,
-        page: skip / limit
+        page: Math.ceil(skip / limit)
       }, function(err, data) {
         if (err) return exits(err);
         else return exits.success(data);
