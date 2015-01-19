@@ -23,16 +23,16 @@ module.exports = {
         description: 'Copy and paste a personal access token, or generate one if you haven\'t already.'
       }
     },
+    owner: {
+      description: 'The name of the organization or user under which the new repo should be created (i.e. as it appears in the URL on GitHub)',
+      example: 'balderdashy',
+      required: true
+    },
     repo: {
       description: 'The name of the Github repo (i.e. as it appears in the URL on GitHub)',
       example: 'private-customer-app',
       required: true
     },
-    owner: {
-      description: 'The name of the organization or user under which the new repo should be created (i.e. as it appears in the URL on GitHub)',
-      example: 'balderdashy',
-      required: true
-    }
   },
 
   defaultExit: 'success',
