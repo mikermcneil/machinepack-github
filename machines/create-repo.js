@@ -15,12 +15,12 @@ module.exports = {
       required: true
     },
     username: {
-      description: 'The GitHub username (to authenticate with)',
+      description: 'Your GitHub username (to authenticate with)',
       example: 'mikermcneil',
       required: true
     },
     password: {
-      description: 'The GitHub password (to authenticate with)',
+      description: 'Your GitHub password (to authenticate with)',
       example: 'l0lcatzz',
       required: true,
       protect: true
