@@ -32,7 +32,8 @@
       "list-repo-commits",
       "list-repo-activity",
       "list-repos",
-      "build-installable-url"
+      "build-installable-url",
+      "get-login-url"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
