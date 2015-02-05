@@ -39,7 +39,8 @@
       "list-repos",
       "build-installable-url",
       "get-login-url",
-      "get-access-token"
+      "get-access-token",
+      "get-current-user"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
