@@ -3,7 +3,7 @@
   "version": "2.3.0",
   "description": "Communicate with the Github API to get repos, commits, etc.",
   "scripts": {
-    "test": "mocha -b"
+    "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
   },
   "keywords": [
     "machinepack",
@@ -14,7 +14,8 @@
   "author": "Mike McNeil",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.19.0"
+    "mocha": "~1.19.0",
+    "test-machinepack-mocha": "^0.2.2"
   },
   "dependencies": {
     "github": "~0.1.16",
@@ -23,8 +24,8 @@
     "machinepack-http": "^1.0.1"
   },
   "repository": {
-    "url": "https://github.com/mikermcneil/machinepack-github.git",
-    "type": "git"
+    "type": "git",
+    "url": "git@github.com:mikermcneil/machinepack-github.git"
   },
   "machinepack": {
     "machineDir": "machines",

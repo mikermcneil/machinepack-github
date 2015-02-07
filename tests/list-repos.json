@@ -1,0 +1,10 @@
+{
+  "machine": "list-repos",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}

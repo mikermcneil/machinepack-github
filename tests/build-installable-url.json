@@ -1,0 +1,10 @@
+{
+  "machine": "build-installable-url",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "machine": "get-login-url",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}

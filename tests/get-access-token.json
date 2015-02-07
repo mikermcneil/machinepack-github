@@ -1,0 +1,10 @@
+{
+  "machine": "get-access-token",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}

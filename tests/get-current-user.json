@@ -1,0 +1,10 @@
+{
+  "machine": "get-current-user",
+  "expectations": [
+    {
+      "todo": true,
+      "using": {},
+      "outcome": "success"
+    }
+  ]
+}
