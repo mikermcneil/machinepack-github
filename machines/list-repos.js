@@ -27,6 +27,7 @@ module.exports = {
       description: 'Unexpected error occurred'
     },
     success: {
+      variableName: 'repos',
       example: [{
         "id": 1296269,
         "owner": {
