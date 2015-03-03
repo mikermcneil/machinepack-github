@@ -23,6 +23,9 @@ module.exports = {
     error: {
       description: 'Unexpected error occurred'
     },
+    rateLimitExceeded: {
+      description: 'Rate limit exceeded.'
+    },
     success: {
       example: {
         "id": 3757512,
@@ -145,22 +148,22 @@ module.exports = {
   fn: function(inputs, exits) {
     var Github = require('github');
 
-    try {
-      var github = new Github({
-        version: '3.0.0',
-      });
+    var github = new Github({
+      version: '3.0.0',
+    });
 
-      github.repos.get({
-        repo: inputs.repo,
-        user: inputs.owner
-      }, function(err, data) {
-        if (err) return exits(err);
-        else return exits.success(data);
-      });
-    }
-    catch (e) {
-      return exits.error(e);
-    }
+    github.repos.get({
+      repo: inputs.repo,
+      user: inputs.owner
+    }, function(err, data) {
+      if (err) {
+        if (_.isObject(err) && (+err.code)===403) {
+          return exits.rateLimitExceeded(err.message);
+        }
+        return exits.error(err);
+      }
+      return exits.success(data);
+    });
   }
 
 };

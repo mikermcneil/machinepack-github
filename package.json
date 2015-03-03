@@ -20,7 +20,7 @@
   "dependencies": {
     "github": "~0.1.16",
     "lodash": "^2.4.1",
-    "machine": "^1.0.0",
+    "machine": "^4.0.1",
     "machinepack-http": "^1.0.1"
   },
   "repository": {
