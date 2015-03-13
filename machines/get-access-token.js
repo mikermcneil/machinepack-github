@@ -77,7 +77,6 @@ module.exports = {
         // Parse AccessToken from the response body
         try {
           var data = JSON.parse(response.body);
-          console.log(data);
 
           if(data.error) {
             if(data.error === 'redirect_uri_mismatch') return exits.redirectUriMismatch();
