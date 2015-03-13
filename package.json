@@ -1,6 +1,6 @@
 {
   "name": "machinepack-github",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Communicate with the Github API to get repos, commits, etc.",
   "scripts": {
     "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
