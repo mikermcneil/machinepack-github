@@ -12,12 +12,24 @@ module.exports = {
     },
     limit: {
       description: 'Maximum number of repos to retrieve (for pagination)',
-      example: 30
+      example: 30,
+      defaultsTo: 30
     },
     skip: {
       description: 'Index of the first repo to retrieve, starting from 0 (for pagination)',
-      example: 0
-    }
+      example: 0,
+      defaultsTo: 0
+    },
+    username: {
+      description: 'Your GitHub username (to authenticate with)',
+      example: 'jresig',
+    },
+    password: {
+      description: 'Your GitHub password (to authenticate with)',
+      example: 'jqftw',
+      protect: true
+    },
+
   },
 
   defaultExit: 'success',
@@ -87,13 +99,22 @@ module.exports = {
 
     var Github = require('github');
 
-    var limit = inputs.limit || 30;
-    var skip = inputs.skip || 0;
+    var limit = inputs.limit;
+    var skip = inputs.skip;
 
     try {
       var github = new Github({
         version: '3.0.0'
       });
+
+      if (inputs.username && inputs.password) {
+        // Authenticate
+        github.authenticate({
+          type: 'basic',
+          username: inputs.username,
+          password: inputs.password
+        });
+      }
 
       github.repos.getFromOrg({
         org: inputs.owner,
