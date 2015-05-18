@@ -2,9 +2,13 @@
   "machine": "build-installable-url",
   "expectations": [
     {
-      "todo": true,
-      "using": {},
-      "outcome": "success"
+      "using": {
+        "personalAccessToken": "wh473v32",
+        "owner": "balderdashy",
+        "repo": "private-customer-app"
+      },
+      "outcome": "success",
+      "returns": "git+https://wh473v32:x-oauth-basic@github.com/balderdashy/private-customer-app.git"
     }
   ]
 }
