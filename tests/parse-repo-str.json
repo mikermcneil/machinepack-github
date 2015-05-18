@@ -1,0 +1,60 @@
+{
+  "machine": "parse-repo-str",
+  "expectations": [
+    {
+      "using": {
+        "string": "node-machine/machine#d"
+      },
+      "outcome": "success",
+      "returns": {
+        "owner": "node-machine",
+        "repo": "machine",
+        "branch": "d"
+      }
+    },
+    {
+      "using": {
+        "string": "/node-machine/machine#d"
+      },
+      "outcome": "success",
+      "returns": {
+        "owner": "node-machine",
+        "repo": "machine",
+        "branch": "d"
+      }
+    },
+    {
+      "using": {
+        "string": "/////node-machine/machine#d"
+      },
+      "outcome": "success",
+      "returns": {
+        "owner": "node-machine",
+        "repo": "machine",
+        "branch": "d"
+      }
+    },
+    {
+      "using": {
+        "string": "/////node-machine/machine#master"
+      },
+      "outcome": "success",
+      "returns": {
+        "owner": "node-machine",
+        "repo": "machine",
+        "branch": "master"
+      }
+    },
+    {
+      "using": {
+        "string": "/////node-machine/machine"
+      },
+      "outcome": "success",
+      "returns": {
+        "owner": "node-machine",
+        "repo": "machine",
+        "branch": "master"
+      }
+    }
+  ]
+}

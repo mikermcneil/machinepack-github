@@ -1,0 +1,30 @@
+{
+  "machine": "download-url",
+  "expectations": [
+    {
+      "using": {
+        "repo": "machine",
+        "owner": "node-machine"
+      },
+      "outcome": "success",
+      "returns": "https://github.com/node-machine/machine/archive/master.zip"
+    },
+    {
+      "using": {
+        "repo": "sails",
+        "owner": "balderdashy"
+      },
+      "outcome": "success",
+      "returns": "https://github.com/balderdashy/sails/archive/master.zip"
+    },
+    {
+      "using": {
+        "repo": "sails",
+        "owner": "balderdashy",
+        "branch": "beta"
+      },
+      "outcome": "success",
+      "returns": "https://github.com/balderdashy/sails/archive/beta.zip"
+    }
+  ]
+}
