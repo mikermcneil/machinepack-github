@@ -40,6 +40,7 @@ module.exports = {
 
     success: {
       variableName: 'result',
+      example: 'https://github.com/balderdashy/sails/master.zip',
       description: 'Done.',
     },
 
