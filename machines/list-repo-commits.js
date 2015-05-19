@@ -26,6 +26,7 @@ module.exports = {
     success: {
       example: [{
         author: {
+          name: 'sgress454',
           username: 'sgress454',
           avatarUrl: 'https://avatars.githubusercontent.com/u/583701?v=3',
           profileUrl: 'https://github.com/sgress454'
@@ -49,23 +50,32 @@ module.exports = {
       repo: inputs.repo,
       user: inputs.owner
     }, function(err, data) {
-      console.log(err);
-      if (err) return exits.error(err);
+      try {
+        if (err) return exits.error(err);
 
-      var commits = [];
+        var commits = [];
 
-      _.each(data, function(commit){
-        commits.push({
-          author: {
-            username: commit.author.login,
-            avatarUrl: commit.author.avatar_url,
-            profileUrl: commit.author.html_url
-          },
-          commitUrl: commit.html_url,
-          timestamp: commit.commit.author.date
+        _.each(data, function(commitData){
+          var formattedCommit = {
+            author: {
+              name: commitData.commit.author.name
+            },
+            commitUrl: commitData.html_url,
+            timestamp: commitData.commit.author.date
+          };
+          if (!_.isNull(commitData.author) && !_.isUndefined(commitData.author)) {
+            formattedCommit.author.username = commitData.author.login;
+            formattedCommit.author.avatarUrl = commitData.author.avatar_url;
+            formattedCommit.author.profileUrl = commitData.author.html_url;
+          }
+          commits.push(formattedCommit);
         });
-      });
-      return exits.success(commits);
+
+        return exits.success(commits);
+      }
+      catch (e) {
+        return exits.error(e);
+      }
     });
   }
 
