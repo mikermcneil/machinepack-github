@@ -73,7 +73,6 @@ module.exports = {
         "svn_url": "https://svn.github.com/octocat/Hello-World",
         "mirror_url": "git://git.example.com/octocat/Hello-World",
         "homepage": "https://github.com",
-        "language": null,
         "forks_count": 9,
         "stargazers_count": 80,
         "watchers_count": 80,

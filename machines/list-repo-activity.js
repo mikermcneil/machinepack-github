@@ -71,8 +71,6 @@ module.exports = {
             },
             "labels": [],
             "state": "closed",
-            "assignee": null,
-            "milestone": null,
             "comments": 1,
             "created_at": "2014-05-15T14:23:58Z",
             "updated_at": "2014-05-15T17:43:12Z",

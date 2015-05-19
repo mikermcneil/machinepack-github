@@ -30,7 +30,7 @@ module.exports = {
         githubProfileUrl: 'https://github.com/mikermcneil',
         location: 'Austin, TX',
         company: 'Balderdash',
-        bio: null,
+        bio: '',
         numFollowers: 437,
         numPublicRepos: 82,
         numPublicGists: 122,

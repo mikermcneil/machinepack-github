@@ -71,7 +71,6 @@ module.exports = {
             },
             "labels": [],
             "state": "closed",
-            "assignee": null,
             "milestone": {
               "url": "https://api.github.com/repos/balderdashy/sails/milestones/3",
               "labels_url": "https://api.github.com/repos/balderdashy/sails/milestones/3/labels",
@@ -103,7 +102,6 @@ module.exports = {
               "state": "closed",
               "created_at": "2013-05-31T07:26:30Z",
               "updated_at": "2014-03-02T03:52:39Z",
-              "due_on": null
             },
             "comments": 217,
             "created_at": "2013-02-17T18:12:28Z",

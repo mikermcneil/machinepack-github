@@ -106,7 +106,6 @@ module.exports = {
         "has_downloads": true,
         "has_wiki": false,
         "forks_count": 697,
-        "mirror_url": null,
         "open_issues_count": 109,
         "forks": 697,
         "open_issues": 109,
