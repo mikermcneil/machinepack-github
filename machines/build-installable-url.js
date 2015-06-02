@@ -24,7 +24,7 @@ module.exports = {
       }
     },
     owner: {
-      description: 'The name of the organization or user under which the new repo should be created (i.e. as it appears in the URL on GitHub)',
+      description: 'The name of the organization or user who owns this repo (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
       required: true
     },
