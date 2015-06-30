@@ -15,12 +15,12 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "~1.19.0",
-    "test-machinepack-mocha": "^0.2.2"
+    "test-machinepack-mocha": "^2.1.1"
   },
   "dependencies": {
     "github": "~0.1.16",
     "lodash": "^3.8.0",
-    "machine": "^8.0.0",
+    "machine": "^10.3.1",
     "machinepack-http": "^1.0.1"
   },
   "repository": {
