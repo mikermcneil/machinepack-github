@@ -21,6 +21,7 @@
     "github": "~0.1.16",
     "lodash": "^3.8.0",
     "machine": "^10.3.1",
+    "machinepack-datetime": "^1.4.0",
     "machinepack-http": "^1.0.1"
   },
   "repository": {
@@ -43,7 +44,8 @@
       "get-access-token",
       "get-current-user",
       "download-url",
-      "parse-repo-str"
+      "parse-repo-str",
+      "search-issues"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
