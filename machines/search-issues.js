@@ -48,6 +48,7 @@ module.exports = {
     success: {
       variableName: 'result',
       description: 'Done.',
+      example: [{}]
     },
 
   },
