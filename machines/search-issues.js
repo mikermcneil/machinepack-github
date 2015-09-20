@@ -12,16 +12,15 @@ module.exports = {
 
   inputs: {
 
-    username: {
-      description: 'Your GitHub username (to authenticate with)',
-      example: 'mikermcneil',
-      required: true
-    },
-
-    password: {
-      description: 'Your GitHub password (to authenticate with)',
-      example: 'l0lcatzz',
-      required: true,
+    credentials: {
+      description: 'Your GitHub credentials.',
+      extendedDescription: 'The expected type of this input varies based on the _type_ of credentials. '+
+      'You should specify a `credentialType` (either "password", "accessToken", or "clientSecret"), '+
+      'as well as the appropriate metadata. '+
+      'If using "password", specify a "username" and "password" properties. '+
+      'If using "accessToken", specify an "accessToken" property. '+
+      'If using "clientSecret", specify "clientId" and "clientSecret" properties.',
+      example: {},
       protect: true
     },
 
@@ -88,8 +87,15 @@ module.exports = {
 
 
   fn: function (inputs,exits) {
+    var _ = require('lodash');
     var Http = require('machinepack-http');
+    var Helpers = require('../helpers');
     var thisPack = require('../');
+
+    // Normalize credentials, if any were provided.
+    var credentials = inputs.credentials ?
+    Helpers.normalizeCredentials(inputs.credentials).execSync() :
+    { headers: {}, params: {} };
 
     // Search issues
     Http.sendHttpRequest({
@@ -97,7 +103,7 @@ module.exports = {
       baseUrl: 'https://api.github.com',
       url: '/search/issues',
       method: 'get',
-      params: {
+      params: _.extend(credentials.params, {
 
         // Set up sort order
         order: 'asc',
@@ -113,11 +119,8 @@ module.exports = {
           state: inputs.state,
           lastUpdatedBefore: inputs.lastUpdatedBefore,
         }).execSync(),
-      },
-      headers: {
-        'authorization': 'Basic ' + (new Buffer(inputs.username + ':' + inputs.password, 'ascii').toString('base64')),
-        'User-Agent': 'machinepack-github',
-      },
+      }),
+      headers: credentials.headers,
     }).exec({
 
       error: function(err) {
