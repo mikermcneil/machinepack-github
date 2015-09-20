@@ -12,18 +12,8 @@ module.exports = {
 
   inputs: {
 
-    username: {
-      description: 'Your GitHub username (to authenticate with)',
-      example: 'mikermcneil',
-      required: true
-    },
-
-    password: {
-      description: 'Your GitHub password (to authenticate with)',
-      example: 'l0lcatzz',
-      required: true,
-      protect: true
-    },
+    // Credentials are required to close an issue.
+    credentials: require('../structs/credentials.required-input'),
 
     repo: {
       description: 'The name of the Github repo (i.e. as it appears in the URL on GitHub)',
@@ -57,36 +47,30 @@ module.exports = {
 
   fn: function (inputs,exits) {
 
-    var util = require('util');
-    var _ = require('lodash');
-    var Http = require('machinepack-http');
+    var Helpers = require('../helpers');
 
 
     // Close issue
-    Http.sendHttpRequest({
-      // See https://developer.github.com/v3/issues/#edit-an-issue
+    Helpers.sendGithubApiRequest({
+
       method: 'patch',
+
       url: '/repos/'+inputs.owner+'/'+inputs.repo+'/issues/'+inputs.issueNumber,
+
       params: {
         state: 'closed'
       },
-      headers: {
-        'authorization': 'Basic ' + (new Buffer(inputs.username + ':' + inputs.password, 'ascii').toString('base64')),
-        'User-Agent': 'machinepack-github',
-      },
-      baseUrl: 'https://api.github.com',
+
+      credentials: inputs.credentials
+
     }).exec({
-
-      error: function(err) {
-        return exits.error(err);
-      },
-
-      success: function(httpResponse) {
+      error: exits.error,
+      success: function (apiResponse) {
         return exits.success();
       }
     });
-  },
 
+  },
 
 
 };

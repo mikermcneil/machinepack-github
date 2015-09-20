@@ -12,17 +12,8 @@ module.exports = {
 
   inputs: {
 
-    credentials: {
-      description: 'Your GitHub credentials.',
-      extendedDescription: 'The expected type of this input varies based on the _type_ of credentials. '+
-      'You should specify a `credentialType` (either "password", "accessToken", or "clientSecret"), '+
-      'as well as the appropriate metadata. '+
-      'If using "password", specify a "username" and "password" properties. '+
-      'If using "accessToken", specify an "accessToken" property. '+
-      'If using "clientSecret", specify "clientId" and "clientSecret" properties.',
-      example: {},
-      protect: true
-    },
+    // Credentials are optional
+    credentials: require('../structs/credentials.optional-input'),
 
     repo: {
       description: 'The name of the Github repo (i.e. as it appears in the URL on GitHub)',
@@ -88,30 +79,22 @@ module.exports = {
 
   fn: function (inputs,exits) {
     var _ = require('lodash');
-    var Http = require('machinepack-http');
     var Helpers = require('../helpers');
     var thisPack = require('../');
 
-    // Normalize credentials, if any were provided.
-    var credentials = inputs.credentials ?
-    Helpers.normalizeCredentials(inputs.credentials).execSync() :
-    { headers: {}, params: {} };
-
     // Search issues
-    Http.sendHttpRequest({
-      // See https://developer.github.com/v3/search/#search-issues
-      baseUrl: 'https://api.github.com',
-      url: '/search/issues',
-      method: 'get',
-      params: _.extend(credentials.params, {
+    Helpers.sendGithubApiRequest({
 
+      method: 'get',
+
+      url: '/search/issues',
+
+      params: {
         // Set up sort order
         order: 'asc',
         sort: 'updated',
-
         // and pagination
         per_page: 100,
-
         // And build the GitHub search string
         q: thisPack.buildGithubSearchString({
           owner: inputs.owner,
@@ -119,27 +102,20 @@ module.exports = {
           state: inputs.state,
           lastUpdatedBefore: inputs.lastUpdatedBefore,
         }).execSync(),
-      }),
-      headers: credentials.headers,
-    }).exec({
-
-      error: function(err) {
-        return exits.error(err);
       },
 
-      success: function(httpResponse) {
-        try {
-          // Parse data from the response body
-          var responseData = JSON.parse(httpResponse.body);
+      credentials: inputs.credentials
 
-          // TODO: get multiple pages if necessary
-          return exits.success(responseData.items);
+    }).exec({
+      error: exits.error,
+      success: function (apiResponse) {
+        try {
+          return exits.success(apiResponse.body.items);
         }
-        catch (e){
-          return exits.error(e);
-        }
+        catch (e) { return exits.error(e); }
       }
     });
+
   },
 
 };

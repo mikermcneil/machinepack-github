@@ -94,6 +94,11 @@ module.exports = {
       else if (inputs.clientId && inputs.clientSecret) {
         inputs.credentialType = 'clientSecret';
       }
+      // If nothing was provided, just bail out with empty dictionaries
+      // for both params and headers (except for the user-agent header).
+      else {
+        return exits.success(normalizedCreds);
+      }
     }
 
     switch (inputs.credentialType) {
