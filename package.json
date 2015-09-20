@@ -47,7 +47,8 @@
       "parse-repo-str",
       "search-issues",
       "close-issue",
-      "build-github-search-string"
+      "build-github-search-string",
+      "comment-on-issue"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",

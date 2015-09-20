@@ -1,18 +1,18 @@
 module.exports = {
 
 
-  friendlyName: 'Close issue',
+  friendlyName: 'Comment on issue',
 
 
-  description: 'Close an issue on GitHub.',
+  description: 'Comment on an issue on GitHub.',
 
 
-  extendedDescription: 'The issue with the specified issue number, within the specified owner and repository will be closed.',
+  extendedDescription: 'Creates a comment in the issue with the specified issue number, within the specified owner and repository.',
 
 
   inputs: {
 
-    // Credentials are required to close an issue.
+    // Credentials are required to comment on an issue.
     credentials: require('../structs/credentials.required-input'),
 
     repo: {
@@ -28,9 +28,16 @@ module.exports = {
     },
 
     issueNumber: {
-      description: 'The issue number of the issue to close.',
+      description: 'The number of the issue to comment on.',
       extendedDescription: 'Note that issue numbers are not globally unique-- they are only unique per-repository.',
       example: 237,
+      required: true
+    },
+
+    comment: {
+      description: 'The contents of the comment.',
+      extendedDescription: 'GitHub-flavored markdown syntax is supported.',
+      example: 'Thanks @cherrybear.  Do _you_ have a link to the PR?',
       required: true
     }
 
@@ -40,7 +47,9 @@ module.exports = {
   exits: {
 
     success: {
-      description: 'Successfully closed issue.',
+      description: 'Successfully commented on issue.',
+      variableName: 'newCommentId',
+      example: 141755181
     },
 
   },
@@ -54,12 +63,12 @@ module.exports = {
     // Close issue
     Helpers.sendGithubApiRequest({
 
-      method: 'patch',
+      method: 'POST',
 
-      url: '/repos/'+inputs.owner+'/'+inputs.repo+'/issues/'+inputs.issueNumber,
+      url: '/repos/'+inputs.owner+'/'+inputs.repo+'/issues/'+inputs.issueNumber+'/comments',
 
       params: {
-        state: 'closed'
+        body: inputs.comment
       },
 
       credentials: inputs.credentials
@@ -67,7 +76,7 @@ module.exports = {
     }).exec({
       error: exits.error,
       success: function (apiResponse) {
-        return exits.success();
+        return exits.success(apiResponse.body.id);
       }
     });
 
