@@ -66,8 +66,6 @@ module.exports = {
       method: 'get',
       url: '/user',
       credentials: inputs.credentials
-      // Just in case:  (might need to bring this back)
-      // headers: {'Authorization': 'token ' + inputs.accessToken },
     }).exec({
 
       error: exits.error,
