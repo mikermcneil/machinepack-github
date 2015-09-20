@@ -1,8 +1,14 @@
 module.exports = {
 
+
   friendlyName: 'List repo commits at path',
+
+
   description: 'Fetch recent commits from a remote GitHub repository within the specifed path.',
+
+
   cacheable: true,
+
 
   inputs: {
     repo: {
@@ -22,7 +28,6 @@ module.exports = {
     }
   },
 
-  defaultExit: 'success',
 
   exits: {
     badRequest: {
