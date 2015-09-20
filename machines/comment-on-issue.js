@@ -15,15 +15,15 @@ module.exports = {
     // Credentials are required to comment on an issue.
     credentials: require('../structs/credentials.required-input'),
 
-    repo: {
-      description: 'The name of the Github repo (i.e. as it appears in the URL on GitHub)',
-      example: 'sails',
-      required: true
-    },
-
     owner: {
       description: 'The name of the organization or user that owns the repo (i.e. as it appears in the URL on GitHub)',
       example: 'balderdashy',
+      required: true
+    },
+
+    repo: {
+      description: 'The name of the Github repo (i.e. as it appears in the URL on GitHub)',
+      example: 'sails',
       required: true
     },
 
