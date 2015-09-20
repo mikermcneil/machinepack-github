@@ -46,7 +46,8 @@
       "download-url",
       "parse-repo-str",
       "search-issues",
-      "close-issue"
+      "close-issue",
+      "build-github-search-string"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",

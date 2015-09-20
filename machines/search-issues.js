@@ -88,42 +88,8 @@ module.exports = {
 
 
   fn: function (inputs,exits) {
-    var util = require('util');
-    var _ = require('lodash');
-    var Datetime = require('machinepack-datetime');
     var Http = require('machinepack-http');
-
-    // Build GitHub search string
-    var githubSearchStr = (function _buildGithubSearchStr(){
-      var q = '';
-
-      // Filter on owner+repo
-      q += util.format(' repo:%s/%s', inputs.owner, inputs.repo);
-
-      // Filter on issue state (open vs. closed)
-      if (!_.isUndefined(inputs.state)) {
-        q += ' state:'+inputs.state;
-      }
-
-      // Filter issues based on when they were last updated
-      if (!_.isUndefined(inputs.lastUpdatedBefore)) {
-        (function _buildLastUpdatedBefore(){
-          var dateInstance = Datetime.parseTimestamp({
-            timestamp: inputs.lastUpdatedBefore,
-            timezone: 'America/Chicago'
-          }).execSync();
-          var formattedDateStr = util.format('%s-%s-%s',
-            dateInstance.year,
-            (dateInstance.month<10?'0':'')+dateInstance.month,
-            (dateInstance.date<10?'0':'')+dateInstance.date
-          );
-          q += ' updated:<'+formattedDateStr;
-        })();
-      }
-
-      // Trim off extra whitespace, and we're done!
-      return _.trim(q);
-    })();
+    var thisPack = require('../');
 
     // Search issues
     Http.sendHttpRequest({
@@ -132,10 +98,21 @@ module.exports = {
       url: '/search/issues',
       method: 'get',
       params: {
-        q: githubSearchStr,
+
+        // Set up sort order
         order: 'asc',
         sort: 'updated',
+
+        // and pagination
         per_page: 100,
+
+        // And build the GitHub search string
+        q: thisPack.buildGithubSearchString({
+          owner: inputs.owner,
+          repo: inputs.repo,
+          state: inputs.state,
+          lastUpdatedBefore: inputs.lastUpdatedBefore,
+        }).execSync(),
       },
       headers: {
         'authorization': 'Basic ' + (new Buffer(inputs.username + ':' + inputs.password, 'ascii').toString('base64')),
@@ -161,7 +138,5 @@ module.exports = {
       }
     });
   },
-
-
 
 };
