@@ -118,12 +118,15 @@ module.exports = {
 
       case 'accessToken':
         if (!inputs.accessToken) {
-          return exits.error(new Error('An `accessToken` is required to authenticate using an `accessToken`.  Duh.'));
+          return exits.error(new Error('An `accessToken` is required to authenticate using an `accessToken`.'));
         }
         return exits.success(
           _.merge(normalizedCreds, {
             params: {
               access_token: inputs.accessToken
+            },
+            headers: {
+              authorization: 'token '+inputs.accessToken
             }
           })
         );
