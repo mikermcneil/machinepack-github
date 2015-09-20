@@ -35,7 +35,6 @@ module.exports = {
     },
   },
 
-  defaultExit: 'success',
 
   exits: {
     error: {

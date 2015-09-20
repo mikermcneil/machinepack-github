@@ -28,9 +28,6 @@ module.exports = {
     }
   },
 
-  defaultExit: 'success',
-  catchallExit: 'error',
-
   exits: {
     redirectUriMismatch: {
       description: 'Triggered when the callbackUrl doesn\'t match the settings supplied in the configured app settings on GitHub.'

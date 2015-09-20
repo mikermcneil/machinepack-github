@@ -22,9 +22,6 @@ module.exports = {
     }
   },
 
-  defaultExit: 'success',
-  catchallExit: 'error',
-
   exits: {
     error: {
       description: 'Triggered when the GitHub API returns an error (i.e. a non-2xx status code)'
