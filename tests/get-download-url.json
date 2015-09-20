@@ -1,5 +1,5 @@
 {
-  "machine": "download-url",
+  "machine": "get-download-url",
   "expectations": [
     {
       "using": {

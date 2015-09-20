@@ -43,12 +43,12 @@
       "get-login-url",
       "get-access-token",
       "get-current-user",
-      "download-url",
       "parse-repo-str",
       "search-issues",
       "close-issue",
       "build-github-search-string",
-      "comment-on-issue"
+      "comment-on-issue",
+      "get-download-url"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
