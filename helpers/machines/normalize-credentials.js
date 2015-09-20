@@ -38,7 +38,7 @@ module.exports = {
     },
 
     accessToken: {
-      description: 'Your GitHub access token (to authenticate with)',
+      description: 'A valid access token that can be used to access the GitHub api.',
       example: '91b0dea491ef41920e8a1bb301',
       protect: true,
       relevantWhen: [{ credentialType: 'accessToken' }]
@@ -79,7 +79,8 @@ module.exports = {
 
     var normalizedCreds = {
       headers: {
-        'User-Agent': 'machinepack-github'
+        'User-Agent': 'machinepack-github',
+        'Accept': 'application/json',
       }
     };
 
@@ -94,8 +95,8 @@ module.exports = {
       else if (inputs.clientId && inputs.clientSecret) {
         inputs.credentialType = 'clientSecret';
       }
-      // If nothing was provided, just bail out with empty dictionaries
-      // for both params and headers (except for the user-agent header).
+      // If nothing was provided, just bail out with no parameters
+      // and only the boilerplate headers (e.g. "user-agent", "accept")
       else {
         return exits.success(normalizedCreds);
       }

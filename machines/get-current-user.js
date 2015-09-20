@@ -1,24 +1,25 @@
 module.exports = {
 
+
   friendlyName: 'Get current user',
+
+
   description: 'Get the GitHub profile data for a user by access token.',
+
+
   cacheable: true,
 
+
   inputs: {
-    accessToken: {
-      description: 'A valid access token that can be used to access the GitHub api.',
-      example: 'abdg27snhd72',
-      required: true
-    }
+
+    credentials: require('../structs/credentials.required-input')
+
   },
 
 
   exits: {
-    error: {
-      description: 'Unexpected error occurred.'
-    },
+
     success: {
-      description: 'Done.',
       example: {
         login: "octocat",
         id: 1,
@@ -54,38 +55,28 @@ module.exports = {
     }
   },
 
+
   fn: function(inputs, exits) {
 
-    var Http = require('machinepack-http');
+    var Helpers = require('../helpers');
+
 
     // Send an HTTP request and receive the response.
-    Http.sendHttpRequest({
-      baseUrl: 'https://api.github.com',
-      url: '/user',
+    Helpers.sendGithubApiRequest({
       method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'token ' + inputs.accessToken,
-        'User-Agent': 'MachinePack'
-      },
+      url: '/user',
+      credentials: inputs.credentials
+      // Just in case:  (might need to bring this back)
+      // headers: {'Authorization': 'token ' + inputs.accessToken },
     }).exec({
 
-      success: function(response) {
-        // Parse data from the response body
-        try {
-          var data = JSON.parse(response.body);
-          return exits.success(data);
-        }
-        catch (e) {
-          return exits.error(e);
-        }
+      error: exits.error,
 
+      success: function(githubApiResponse) {
+        return exits.success(githubApiResponse.body);
       },
-
-      error: function(err) {
-        return exits.error(err);
-      }
     });
   }
+
 
 };
