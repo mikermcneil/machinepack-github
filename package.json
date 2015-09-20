@@ -45,7 +45,8 @@
       "get-current-user",
       "download-url",
       "parse-repo-str",
-      "search-issues"
+      "search-issues",
+      "close-issue"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
