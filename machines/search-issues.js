@@ -50,6 +50,7 @@ module.exports = {
         url: 'https://api.github.com/repos/balderdashy/sails/issues/2976',
         number: 2976,
         state: 'open',
+        pull_request: '*',
         title: 'Error 500 on duplicate key found in database',
         body: 'How to catch the `error` occured while db find a duplicate key...',
         locked: false,
