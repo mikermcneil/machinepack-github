@@ -67,6 +67,10 @@ module.exports = {
     // Normalize credentials, if any were provided.
     inputs.credentials = Helpers.normalizeCredentials(inputs.credentials).execSync();
 
+    // Ensure "Accept" and "User-agent" headers exist.
+    inputs.credentials.headers['Accept'] = inputs.credentials.headers['Accept'] || 'application/json';
+    inputs.credentials.headers['User-Agent'] = inputs.credentials.headers['User-Agent'] || 'machinepack-github';
+
     // Send API request
     Http.sendHttpRequest({
       baseUrl: 'https://api.github.com',

@@ -36,7 +36,19 @@ module.exports = {
       description: 'A JS timestamp.',
       extendedDescription: 'Issues that have been updated _since_ this timestamp will be excluded from the results.',
       example: 1442710858715
-    }
+    },
+
+    includePullRequests: {
+      description: 'Whether to include pull requests in search results.',
+      example: false,
+      defaultsTo: false
+    },
+
+    includeOtherIssues: {
+      description: 'Whether to include normal issues (i.e. things that aren\'t pull requests) in search results.',
+      example: true,
+      defaultsTo: true
+    },
 
   },
 
@@ -102,6 +114,11 @@ module.exports = {
           repo: inputs.repo,
           state: inputs.state,
           lastUpdatedBefore: inputs.lastUpdatedBefore,
+          type:
+            (!inputs.includePullRequests && inputs.includeOtherIssues) ? 'issue' :
+            (inputs.includePullRequests && !inputs.includeOtherIssues) ? 'pr' :
+            (inputs.includePullRequests && inputs.includeOtherIssues) ? undefined :
+            'huh?'
         }).execSync(),
       },
 

@@ -77,12 +77,7 @@ module.exports = {
   fn: function (inputs,exits) {
     var _ = require('lodash');
 
-    var normalizedCreds = {
-      headers: {
-        'User-Agent': 'machinepack-github',
-        'Accept': 'application/json',
-      }
-    };
+    var normalizedCreds = {};
 
     // If `credentialType` was left unspecified, infer it.
     if (_.isUndefined(inputs.credentialType)) {
