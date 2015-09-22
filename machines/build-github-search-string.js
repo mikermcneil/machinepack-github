@@ -34,6 +34,12 @@ module.exports = {
       description: 'A JS timestamp.',
       extendedDescription: 'Issues that have been updated _since_ this timestamp will be excluded from the results.',
       example: 1442710858715
+    },
+
+    type: {
+      description: 'The type of issues to return (either `pr` or `issue).',
+      extendedDescription: 'If omitted, both types of issues will be searched.',
+      example: 'pr'
     }
 
   },
@@ -71,6 +77,11 @@ module.exports = {
     // Filter on issue state (open vs. closed)
     if (!_.isUndefined(inputs.state)) {
       q.push( 'state:'+inputs.state );
+    }
+
+    // Filter on issue type (pr vs. issue)
+    if (!_.isUndefined(inputs.type)) {
+      q.push( 'type:'+inputs.type );
     }
 
     // Filter issues based on when they were last updated.
