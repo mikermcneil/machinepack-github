@@ -84,7 +84,7 @@ module.exports = {
     if (!_.isUndefined(inputs.withAllOfTheseLabels)) {
       q.push(
         _.map(inputs.withAllOfTheseLabels, function (labelName){
-          return 'label:'+labelName;
+          return 'label:"'+labelName+'"'; // << use double quotes to support labels with whitespace (see https://github.com/isaacs/github/issues/65#issuecomment-63971607)
         })
         .join(' ')
       );
