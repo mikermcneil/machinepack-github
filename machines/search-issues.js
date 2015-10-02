@@ -38,6 +38,12 @@ module.exports = {
       example: 1442710858715
     },
 
+    withAllOfTheseLabels: {
+      description: 'A set of issue labels.',
+      extendedDescription: 'Issues that include _all_ of these labels will be included in search results.',
+      example: ['question']
+    },
+
     includePullRequests: {
       description: 'Whether to include pull requests in search results.',
       example: false,
@@ -114,6 +120,7 @@ module.exports = {
           repo: inputs.repo,
           state: inputs.state,
           lastUpdatedBefore: inputs.lastUpdatedBefore,
+          withAllOfTheseLabels: inputs.withAllOfTheseLabels,
           type:
             (!inputs.includePullRequests && inputs.includeOtherIssues) ? 'issue' :
             (inputs.includePullRequests && !inputs.includeOtherIssues) ? 'pr' :

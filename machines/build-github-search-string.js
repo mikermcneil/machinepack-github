@@ -36,6 +36,12 @@ module.exports = {
       example: 1442710858715
     },
 
+    withAllOfTheseLabels: {
+      description: 'A set of issue labels.',
+      extendedDescription: 'Issues that include _all_ of these labels will be included in search results.',
+      example: ['question']
+    },
+
     type: {
       description: 'The type of issues to return (either `pr` or `issue).',
       extendedDescription: 'If omitted, both types of issues will be searched.',
@@ -72,6 +78,16 @@ module.exports = {
     // or just owner
     else if (inputs.owner) {
       q.push( util.format( 'user:%s', inputs.owner) );
+    }
+
+    // Filter on labels (only include issue if it has _all_ of these labels)
+    if (!_.isUndefined(inputs.withAllOfTheseLabels)) {
+      q.push(
+        _.map(inputs.withAllOfTheseLabels, function (labelName){
+          return 'label:'+labelName;
+        })
+        .join(' ')
+      );
     }
 
     // Filter on issue state (open vs. closed)
