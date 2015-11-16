@@ -42,6 +42,12 @@ module.exports = {
       example: ['question']
     },
 
+    withNoneOfTheseLabels: {
+      description: 'A set of issue labels.',
+      extendedDescription: 'Issues that include _none_ of these labels will be included in search results.',
+      example: ['bug']
+    },
+
     type: {
       description: 'The type of issues to return (either `pr` or `issue).',
       extendedDescription: 'If omitted, both types of issues will be searched.',
@@ -85,6 +91,16 @@ module.exports = {
       q.push(
         _.map(inputs.withAllOfTheseLabels, function (labelName){
           return 'label:"'+labelName+'"'; // << use double quotes to support labels with whitespace (see https://github.com/isaacs/github/issues/65#issuecomment-63971607)
+        })
+        .join(' ')
+      );
+    }
+
+    // Filter on labels (only include issue if it has _none_ of these labels)
+    if (!_.isUndefined(inputs.withNoneOfTheseLabels)) {
+      q.push(
+        _.map(inputs.withNoneOfTheseLabels, function (labelName){
+          return '-label:"'+labelName+'"'; // << use double quotes to support labels with whitespace (see https://github.com/isaacs/github/issues/65#issuecomment-63971607)
         })
         .join(' ')
       );
