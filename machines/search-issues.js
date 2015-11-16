@@ -44,6 +44,12 @@ module.exports = {
       example: ['question']
     },
 
+    withNoneOfTheseLabels: {
+      description: 'A set of issue labels.',
+      extendedDescription: 'Issues that include _none_ of these labels will be included in search results.',
+      example: ['bug']
+    },
+
     includePullRequests: {
       description: 'Whether to include pull requests in search results.',
       example: false,
@@ -121,6 +127,7 @@ module.exports = {
           state: inputs.state,
           lastUpdatedBefore: inputs.lastUpdatedBefore,
           withAllOfTheseLabels: inputs.withAllOfTheseLabels,
+          withNoneOfTheseLabels: inputs.withNoneOfTheseLabels,
           type:
             (!inputs.includePullRequests && inputs.includeOtherIssues) ? 'issue' :
             (inputs.includePullRequests && !inputs.includeOtherIssues) ? 'pr' :
