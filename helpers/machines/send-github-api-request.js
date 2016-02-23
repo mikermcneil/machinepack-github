@@ -31,6 +31,11 @@ module.exports = {
       defaultsTo: {}
     },
 
+    body: {
+      description: 'Body of the request to send (for PUT or POST requests).',
+      example: '*',
+    },
+
     headers: {
       description: 'Headers to send in the request.',
       extendedDescription: 'Any headers necessary for authentication will be inferred from the provided credentials and folded in automatically.',
@@ -77,6 +82,7 @@ module.exports = {
       url: inputs.url,
       method: inputs.method,
       params: _.merge(inputs.credentials.params, inputs.params),
+      body: inputs.body,
       headers: _.merge(inputs.credentials.headers, inputs.headers),
     }).exec({
 
