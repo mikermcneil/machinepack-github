@@ -50,7 +50,8 @@
       "comment-on-issue",
       "get-download-url",
       "add-labels-to-issue",
-      "remove-label-from-issue"
+      "remove-label-from-issue",
+      "list-issue-comments"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
