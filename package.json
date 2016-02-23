@@ -48,7 +48,8 @@
       "close-issue",
       "build-github-search-string",
       "comment-on-issue",
-      "get-download-url"
+      "get-download-url",
+      "add-labels-to-issue",
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
