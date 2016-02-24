@@ -20,7 +20,7 @@
   "dependencies": {
     "github": "~0.1.16",
     "lodash": "^3.8.0",
-    "machine": "^10.3.1",
+    "machine": "^11.0.3",
     "machinepack-datetime": "^1.4.0",
     "machinepack-http": "^2.4.0"
   },
@@ -51,7 +51,8 @@
       "get-download-url",
       "add-labels-to-issue",
       "remove-label-from-issue",
-      "list-issue-comments"
+      "list-issue-comments",
+      "reopen-issue"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
