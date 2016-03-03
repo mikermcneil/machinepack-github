@@ -53,7 +53,8 @@
       "remove-label-from-issue",
       "list-issue-comments",
       "reopen-issue",
-      "create-webhook"
+      "create-webhook",
+      "add-collaborator"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
