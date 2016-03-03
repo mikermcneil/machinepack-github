@@ -91,6 +91,10 @@ module.exports = {
       },
 
       success: function(httpResponse) {
+        // Allow responses with no body
+        if (httpResponse.body === '' || httpResponse.body === null) {
+          return exits.success(httpResponse.body);
+        }
         try {
           // Parse data from the response body
           httpResponse.body = JSON.parse(httpResponse.body);
