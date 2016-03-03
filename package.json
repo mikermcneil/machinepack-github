@@ -52,7 +52,8 @@
       "add-labels-to-issue",
       "remove-label-from-issue",
       "list-issue-comments",
-      "reopen-issue"
+      "reopen-issue",
+      "create-webhook"
     ],
     "devLinks": [
       "https://developer.github.com/v3/",
