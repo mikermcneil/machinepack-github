@@ -54,6 +54,8 @@
       "list-issue-comments",
       "reopen-issue",
       "create-webhook",
+      "edit-webhook",
+      "list-webhooks",
       "add-collaborator"
     ],
     "devLinks": [
