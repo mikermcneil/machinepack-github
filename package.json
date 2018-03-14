@@ -3,7 +3,9 @@
   "version": "4.5.0",
   "description": "Communicate with the Github API to get repos, commits, etc.",
   "scripts": {
-    "test": "node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
+    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
+    "lint": "node ./node_modules/eslint/bin/eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "custom-tests": "node ./node_modules/mocha/bin/mocha && node ./node_modules/test-machinepack-mocha/bin/testmachinepack-mocha.js"
   },
   "keywords": [
     "machinepack",
@@ -14,7 +16,8 @@
   "author": "Mike McNeil",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.19.0",
+    "eslint": "4.11.0",
+    "mocha": "^1.19.0",
     "test-machinepack-mocha": "^2.1.1"
   },
   "dependencies": {
@@ -29,7 +32,7 @@
     "url": "git@github.com:mikermcneil/machinepack-github.git"
   },
   "machinepack": {
-    "machineDir": "machines",
+    "machineDir": "lib",
     "machines": [
       "get-repo",
       "create-repo",
