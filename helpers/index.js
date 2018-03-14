@@ -1,5 +1,5 @@
 // This is a little helper pack with some private machines.
-var _ = require('lodash');
+var _ = require('@sailshq/lodash');
 var Machine = require('machine');
 
 module.exports = {

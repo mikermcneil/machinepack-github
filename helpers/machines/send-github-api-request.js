@@ -65,7 +65,7 @@ module.exports = {
 
 
   fn: function (inputs,exits) {
-    var _ = require('lodash');
+    var _ = require('@sailshq/lodash');
     var Http = require('machinepack-http');
     var Helpers = require('../');
 
