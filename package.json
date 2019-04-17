@@ -21,8 +21,8 @@
     "test-machinepack-mocha": "^3.0.0"
   },
   "dependencies": {
-    "@sailshq/lodash": "3.10.2",
-    "github": "~0.1.16",
+    "@sailshq/lodash": "^3.10.2",
+    "github": "0.1.16",
     "machine": "^11.0.3",
     "machinepack-datetime": "^1.4.0",
     "machinepack-http": "^2.4.0"
