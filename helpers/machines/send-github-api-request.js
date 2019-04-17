@@ -44,7 +44,7 @@ module.exports = {
     },
 
     // Credentials are optional
-    credentials: require('../../structs/credentials.optional-input'),
+    credentials: require('../../constants/credentials.optional-input'),
 
   },
 
